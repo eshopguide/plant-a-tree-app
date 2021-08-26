@@ -5,7 +5,7 @@ ruby '3.0.2'
 
 # backend
 gem 'rails', '~> 6.1.4'
-gem 'pg', '~> 1.1'
+gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.7.5', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

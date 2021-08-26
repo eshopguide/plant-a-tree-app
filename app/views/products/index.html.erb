@@ -1,9 +1,22 @@
-<%= polaris_page(title: "Products", back_url: home_path) do %>
-  <%= polaris_card do %>
-    <%= polaris_list do |list| %>
-      <% @products.each do |product| %>
-        <% list.item { product.title } %>
+  <%= polaris_page(title: "Products", back_url: home_path) do %>
+    <%= polaris_card do %>
+      <%= polaris_resource_list do %>
+
+        <% @products.each do |product| %>
+          <%= polaris_resource_item do |c| %>
+            <% c.media do %>
+              <%= polaris_thumbnail(
+                    source: product.image.src,
+                    alt: product.image.alt,
+                    size: :large,
+                    ) %>
+            <% end %>
+            <h3>
+              <%= polaris_text_style(variation: :strong) { product.title } %>
+            </h3>
+            <div><%= product.body_html %></div>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
