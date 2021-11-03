@@ -22,6 +22,8 @@ gem 'turbo-rails', '~> 0.6.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 5.0.0'
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -35,4 +37,5 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'webmock', '~> 3.14'
 end
