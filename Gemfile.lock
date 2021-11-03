@@ -99,6 +99,7 @@ GEM
       xpath (~> 3.2)
     childprocess (3.0.0)
     concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     crass (1.0.6)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -159,6 +160,8 @@ GEM
     nokogiri (1.12.3-x64-mingw32)
       racc (~> 1.4)
     nokogiri (1.12.3-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.3-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -226,6 +229,7 @@ GEM
       ffi (~> 1.0)
     redirect_safely (1.0.0)
       activemodel
+    redis (4.5.1)
     regexp_parser (2.1.1)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -237,6 +241,10 @@ GEM
       activeresource (>= 4.1.0, < 6.0.0)
       graphql-client
       rack
+    sidekiq (6.2.2)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -280,6 +288,7 @@ PLATFORMS
   arm64-darwin-20
   x64-mingw32
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.7.5)
@@ -294,6 +303,7 @@ DEPENDENCIES
   rails (~> 6.1.4)
   selenium-webdriver
   shopify_app!
+  sidekiq (~> 6.2)
   spring
   turbo-rails (~> 0.6.0)
   tzinfo-data
