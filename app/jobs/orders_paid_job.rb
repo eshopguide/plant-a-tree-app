@@ -1,8 +1,8 @@
-class OrdersPaidJob < ActiveJob::Base
-  def perform(shop_domain:, webhook:)
-  include Sidekiq::Worker
+# frozen_string_literal: true
 
-  sidekiq_options retry: 2
+class OrdersPaidJob < ActiveJob::Base
+
+  def perform(shop_domain:, order:)
     shop = Shop.find_by(shopify_domain: shop_domain)
 
     if shop.nil?
