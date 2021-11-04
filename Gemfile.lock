@@ -250,6 +250,9 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
+    rspec-sidekiq (3.1.0)
+      rspec-core (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.10.3)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -325,6 +328,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.1.4)
   rspec-rails (~> 5.0.0)
+  rspec-sidekiq
   selenium-webdriver
   shopify_app!
   sidekiq (~> 6.2)

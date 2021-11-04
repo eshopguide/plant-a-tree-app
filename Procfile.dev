@@ -1,2 +1,3 @@
 web: bundle exec rails s -p 3000
+jobworker: bundle exec sidekiq -q default -q import -c 5
 webpacker: ./bin/webpack-dev-server

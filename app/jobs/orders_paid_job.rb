@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-class OrdersPaidJob < ActiveJob::Base
+class OrdersPaidJob
+  include Sidekiq::Worker
+  sidekiq_options retry: 2
 
-  def perform(shop_domain:, order:)
+  def perform(shop_domain, order)
     shop = Shop.find_by(shopify_domain: shop_domain)
 
     if shop.nil?
@@ -12,11 +14,16 @@ class OrdersPaidJob < ActiveJob::Base
 
     shop.with_shopify_session do
       # read order
+      product_ids = order['order']['line_items'].map { |item| item['id'] }.join(',')
 
       # if condition for tree planting given
-      # (for now: is there a tree product in the line_items)
+      products = ShopifyAPI::Product.find(:all, params: { ids: product_ids })
+      tag_counter = products.map(&:tags).count('plant_a_tree')
 
       # talk to tree planting api
+      if tag_counter > 0
+
+      end
     end
   end
 end
