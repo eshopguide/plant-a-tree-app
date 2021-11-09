@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resource :messages, only: :create
 
   mount ShopifyApp::Engine, at: '/'
+
+  post 'webhooks/orders_paid', :to => 'webhooks#orders_paid'
 end

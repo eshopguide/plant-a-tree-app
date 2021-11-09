@@ -21,5 +21,7 @@ module ShopifyHotwireSample
 
     # Required to allow an embedded app to make cross-domain requests in the Shopify Admin.
     config.action_dispatch.cookies_same_site_protection = :none
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

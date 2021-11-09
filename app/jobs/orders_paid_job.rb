@@ -1,5 +1,10 @@
-class OrdersPaidJob < ActiveJob::Base
-  def perform(shop_domain:, webhook:)
+# frozen_string_literal: true
+
+class OrdersPaidJob
+  include Sidekiq::Worker
+  sidekiq_options retry: 2
+
+  def perform(shop_domain, order)
     shop = Shop.find_by(shopify_domain: shop_domain)
 
     if shop.nil?
@@ -7,13 +12,9 @@ class OrdersPaidJob < ActiveJob::Base
       return
     end
 
-    shop.with_shopify_session do
-      # read order
+    result = PlantATree::TreeCounter.call(shop, order)
 
-      # if condition for tree planting given
-      # (for now: is there a tree product in the line_items)
-
-      # talk to tree planting api
-    end
+    # TODO: Do we want some error handling here?
+    PlantATree::PlantATree.call(result.payload) if result.success?
   end
 end
