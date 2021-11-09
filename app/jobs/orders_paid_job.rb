@@ -12,18 +12,9 @@ class OrdersPaidJob
       return
     end
 
-    shop.with_shopify_session do
-      # read order
-      product_ids = order['order']['line_items'].map { |item| item['id'] }.join(',')
+    result = PlantATree::TreeCounter.call(shop, order)
 
-      # if condition for tree planting given
-      products = ShopifyAPI::Product.find(:all, params: { ids: product_ids })
-      tag_counter = products.map(&:tags).count('plant_a_tree')
-
-      # talk to tree planting api
-      if tag_counter > 0
-
-      end
-    end
+    # TODO: Do we want some error handling here?
+    PlantATree::PlantATree.call(result.payload) if result.success?
   end
 end

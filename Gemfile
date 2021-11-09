@@ -16,6 +16,9 @@ gem 'sidekiq', '~> 6.2'
 gem 'shopify_app', github: 'kirillplatonov/shopify_app'
 gem 'polaris_view_components'
 
+# digital humani
+gem 'digitalhumani', '~> 0.1.0'
+
 # frontend
 gem 'webpacker', '~> 5.0'
 gem 'turbo-rails', '~> 0.6.0'
