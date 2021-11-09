@@ -2,13 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe OrdersPaidJob do
-  let(:shop_domain) { 'plantatreeapp.myshopify.com' }
-  let!(:shop) { create(:shop, shopify_domain: shop_domain) }
-
-  let(:order_params) { JSON.parse(load_order('order_paid_with_trees')) }
-  let(:line_item_ids) { JSON.parse(load_products('line_items_with_trees')) }
-
+describe PlantATree::TreeCounter do
   let(:enterpriseId) { ENV.fetch('DIGITAL_HUMANI_ENTERPRISE_ID', '') }
   let(:projectId) { '81818181' }
   let(:user) { 'test@example.com' }
@@ -33,18 +27,15 @@ RSpec.describe OrdersPaidJob do
     }
   end
 
-  before do
-    stub_request(:get, "https://#{shop_domain}/admin/api/2021-07/products.json?fields=id&tags=plant_a_tree")
-      .to_return(status: 200, body: line_item_ids.to_json, headers: {})
+  let(:result) { PlantATree::PlantATree.call(tree_amount) }
 
+  before do
     stub_request(:post, 'https://api.sandbox.digitalhumani.com/tree')
       .with(body: request_body.to_json, headers: request_header)
       .to_return(status: 200, body: response_body.to_json, headers: {})
   end
 
-  # TODO: refactor or delete. We don't need to test sidekiq here
-  it 'has enqueued sidekiq job' do
-    OrdersPaidJob.perform_async(shop_domain, order_params)
-    expect(OrdersPaidJob).to have_enqueued_sidekiq_job(shop_domain, order_params)
+  it 'successfully plant some trees' do
+    expect(result).to eq(response_body)
   end
 end
