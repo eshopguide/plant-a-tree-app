@@ -278,6 +278,10 @@ GEM
       graphql-client
       rack
       webrick
+    shoulda-callback-matchers (1.1.4)
+      activesupport (>= 3)
+    shoulda-matchers (5.0.0)
+      activesupport (>= 5.2.0)
     sidekiq (6.2.2)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -350,6 +354,8 @@ DEPENDENCIES
   rspec-sidekiq
   selenium-webdriver
   shopify_app!
+  shoulda-callback-matchers (~> 1.1.1)
+  shoulda-matchers (~> 5.0)
   sidekiq (~> 6.2)
   spring
   turbo-rails (~> 0.6.0)
