@@ -1,10 +1,10 @@
 <%= polaris_page do %>
-  <% unless @dh_api_settings.api_key.present? %>
+  <% unless @shop_settings.api_key.present? %>
     <%= polaris_empty_state(
           heading: 'Connect your shop to the Digital Humani API',
           image: asset_pack_url('media/images/logo_digital_humani.png')
           ) do |state| %>
-      <% state.primary_action(url: edit_dh_api_settings_path) { 'Add API credentials' } %>
+      <% state.primary_action(url: edit_shop_settings_path) { 'Add API credentials' } %>
       <% state.secondary_action(url: 'https://digitalhumani.com/') { 'Learn more' } %>
     <% end %>
   <% else %>
@@ -14,17 +14,17 @@
         ) do |callout| %>
       <p>Digital Humani API Settings</p><%= polaris_description_list do |list| %>
         <% list.item(term: "API key") do %>
-          <%= @dh_api_settings.api_key %>
+          <%= @shop_settings.api_key %>
         <% end %>
         <% list.item(term: "Enterprise ID") do %>
-          <%= @dh_api_settings.enterprise_id.present? ? @dh_api_settings.enterprise_id : 'not set yet' %>
+          <%= @shop_settings.enterprise_id.present? ? @shop_settings.enterprise_id : 'not set yet' %>
         <% end %>
         <% list.item(term: "Project ID") do %>
-          <%= @dh_api_settings.project_id.present? ? @dh_api_settings.project_id : 'not set yet' %>
+          <%= @shop_settings.project_id.present? ? @shop_settings.project_id : 'not set yet' %>
         <% end %>
       <% end %>
 
-      <% callout.primary_action(url: edit_dh_api_settings_path) { "Edit API credentials" } %>
+      <% callout.primary_action(url: edit_shop_settings_path) { "Edit API credentials" } %>
     <% end %>
   <% end %>
 <% end %>

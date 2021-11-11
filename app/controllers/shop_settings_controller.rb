@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DhApiSettingsController < AuthenticatedController
+class ShopSettingsController < AuthenticatedController
   before_action :find_shop_and_settings, only: %i[show edit update]
 
   def edit
@@ -8,7 +8,7 @@ class DhApiSettingsController < AuthenticatedController
   end
 
   def update
-    if @dh_api_settings.update(dh_api_settings_params)
+    if @shop_settings.update(shop_settings_params)
       flash[:notice] = 'Settings has been updated'
       redirect_to home_path
     else
@@ -19,12 +19,12 @@ class DhApiSettingsController < AuthenticatedController
 
   private
 
-  def dh_api_settings_params
+  def shop_settings_params
     params.permit(:api_key, :enterprise_id)
   end
 
   def find_shop_and_settings
     @shop = Shop.find_by_shopify_domain(@current_shopify_session.domain)
-    @dh_api_settings = @shop.dh_api_settings
+    @shop_settings = @shop.shop_settings
   end
 end

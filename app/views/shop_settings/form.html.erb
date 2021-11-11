@@ -16,13 +16,13 @@
   <% end %>
 
   <%= polaris_card(title: "Connect your Digital Humani Account with shopify") do %>
-    <%= form_with(model: @dh_api_settings, url: update_dh_api_settings_path(@dh_api_settings), method: "patch") do %>
+    <%= form_with(model: @shop_settings, url: update_shop_settings_path(@shop_settings), method: "patch") do %>
       <%= polaris_form_layout do |form_layout| %>
         <% form_layout.item do %>
           <%= polaris_text_field(
                 name: :api_key,
                 label: "API key",
-                value: @dh_api_settings.api_key,
+                value: @shop_settings.api_key,
                 help_text: "The API key will be used for authenticating your API requests."
               ) %>
         <% end %>
@@ -30,7 +30,7 @@
           <%= polaris_text_field(
                 name: :enterprise_id,
                 label: "Enterprise ID",
-                value: @dh_api_settings.enterprise_id,
+                value: @shop_settings.enterprise_id,
                 help_text: "You will need the enterprise's ID to interact with most of the API calls.",
               ) %>
         <% end %>
@@ -38,7 +38,7 @@
           <%= polaris_text_field(
                 name: :project_id,
                 label: "Project ID",
-                value: @dh_api_settings.project_id,
+                value: @shop_settings.project_id,
                 disabled: true
               ) %>
         <% end %>

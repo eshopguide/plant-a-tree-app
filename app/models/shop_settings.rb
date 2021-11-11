@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DhApiSettings < ApplicationRecord
+class ShopSettings < ApplicationRecord
   belongs_to :shop
   encrypts :api_key
 end
