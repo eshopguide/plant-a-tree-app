@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DhApiSettingsController < AuthenticatedController
-  before_action :find_settings_object, only: %i[show edit update]
+  before_action :find_shop_and_settings, only: %i[show edit update]
 
   def edit
     render :form
@@ -23,7 +23,8 @@ class DhApiSettingsController < AuthenticatedController
     params.permit(:api_key, :enterprise_id)
   end
 
-  def find_settings_object
-    @dh_api_settings = DhApiSettings.first
+  def find_shop_and_settings
+    @shop = Shop.find_by_shopify_domain(@current_shopify_session.domain)
+    @dh_api_settings = @shop.dh_api_settings
   end
 end
