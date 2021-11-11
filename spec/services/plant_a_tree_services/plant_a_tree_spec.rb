@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PlantATree::TreeCounter do
+describe PlantATreeServices::PlantATree do
   let(:enterpriseId) { ENV.fetch('DIGITAL_HUMANI_ENTERPRISE_ID', '') }
   let(:projectId) { '81818181' }
   let(:user) { 'test@example.com' }
@@ -27,7 +27,7 @@ describe PlantATree::TreeCounter do
     }
   end
 
-  let(:result) { PlantATree::PlantATree.call(tree_amount) }
+  let(:result) { PlantATreeServices::PlantATree.call(tree_amount) }
 
   before do
     stub_request(:post, 'https://api.sandbox.digitalhumani.com/tree')

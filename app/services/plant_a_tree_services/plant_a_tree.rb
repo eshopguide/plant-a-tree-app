@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module PlantATree
+module PlantATreeServices
   class PlantATree < ApplicationService
     def initialize(tree_amount)
       @tree_amount = tree_amount
