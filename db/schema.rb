@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_31_142437) do
+ActiveRecord::Schema.define(version: 2021_11_10_133015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dh_api_settings", force: :cascade do |t|
+    t.text "api_key_ciphertext"
+    t.string "enterprise_id"
+    t.string "project_id"
+  end
 
   create_table "shops", force: :cascade do |t|
     t.string "shopify_domain", null: false

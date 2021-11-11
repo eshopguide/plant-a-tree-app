@@ -11,6 +11,7 @@ gem 'bootsnap', '>= 1.7.5', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails', '~> 2.7'
 gem 'sidekiq', '~> 6.2'
+gem 'lockbox', '~> 0.6.6'
 
 # shopify
 gem 'shopify_app', github: 'kirillplatonov/shopify_app'
