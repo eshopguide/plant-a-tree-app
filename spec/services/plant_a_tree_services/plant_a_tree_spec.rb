@@ -3,15 +3,15 @@
 require 'rails_helper'
 
 describe PlantATreeServices::PlantATree do
-  let(:enterpriseId) { ENV.fetch('DIGITAL_HUMANI_ENTERPRISE_ID', '') }
-  let(:projectId) { '81818181' }
+  let!(:shop_settings) { create(:shop_settings) }
+
   let(:user) { 'test@example.com' }
   let(:tree_amount) { 3 }
-  let(:request_header) { { 'X-Api-Key' => ENV.fetch('DIGITAL_HUMANI_API_KEY') } }
+  let(:request_header) { { 'X-Api-Key' => shop_settings.api_key } }
   let(:request_body) do
     {
-      'enterpriseId': enterpriseId,
-      'projectId': projectId,
+      'enterpriseId': shop_settings.enterprise_id,
+      'projectId': shop_settings.project_id,
       'user': user,
       'treeCount': tree_amount
     }
@@ -21,13 +21,13 @@ describe PlantATreeServices::PlantATree do
       'uuid' => SecureRandom.uuid,
       'created' => DateTime.parse(DateTime.now.to_s).iso8601,
       'treeCount' => tree_amount,
-      'enterpriseId' => enterpriseId,
-      'projectId' => projectId,
+      'enterpriseId' => shop_settings.enterprise_id,
+      'projectId' => shop_settings.project_id,
       'user' => user
     }
   end
 
-  let(:result) { PlantATreeServices::PlantATree.call(tree_amount) }
+  let(:result) { PlantATreeServices::PlantATree.call(shop_settings.shop, tree_amount) }
 
   before do
     stub_request(:post, 'https://api.sandbox.digitalhumani.com/tree')
