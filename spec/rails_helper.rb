@@ -70,7 +70,6 @@ RSpec.configure do |config|
 
   # Start DatabaseCleaner and clear mail deliveries before every example
   config.before(:each) do
-    ActionMailer::Base.deliveries.clear
     DatabaseCleaner.start
   end
 
