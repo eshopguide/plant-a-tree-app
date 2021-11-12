@@ -10,6 +10,9 @@ class Shop < ApplicationRecord
     ShopifyApp.configuration.api_version
   end
 
+  # TODO: needed for specs. Remove if another solution for login helper was found
+  def sync_shopify_data; end
+
   private
 
   def make_shop_settings

@@ -39,10 +39,12 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
+  gem 'database_cleaner'
   gem 'rspec-sidekiq'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'simplecov', require: false
   gem 'webdrivers'
   gem 'webmock', '~> 3.14'
 end
