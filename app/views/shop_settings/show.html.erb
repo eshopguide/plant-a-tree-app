@@ -12,7 +12,8 @@
           title: "Digital Humani API Settings",
           illustration: asset_pack_url('media/images/logo_digital_humani.png')
         ) do |callout| %>
-      <p>Digital Humani API Settings</p><%= polaris_description_list do |list| %>
+      <p>You are currently connected to the Digital Humani API</p>
+      <%= polaris_description_list do |list| %>
         <% list.item(term: "API key") do %>
           <%= @shop_settings.api_key %>
         <% end %>

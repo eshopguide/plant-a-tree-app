@@ -27,4 +27,18 @@ describe 'Update shop settings', type: :feature do
       expect(page).to have_current_path(home_path(shop: shop.shopify_domain))
     end
   end
+
+  context 'with invalid user input', js: true do
+    it 'renders form with error message' do
+      within('form.shop-settings-form') do
+        fill_in 'api_key', with: ''
+        fill_in 'enterprise_id', with: ''
+
+        click_on 'Send'
+      end
+
+      expect(page).to have_content('Some errors occurred')
+      expect(page).to have_current_path(edit_shop_settings_path)
+    end
+  end
 end

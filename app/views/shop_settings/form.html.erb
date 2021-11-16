@@ -16,34 +16,35 @@
   <% end %>
 
   <%= polaris_card(title: "Connect your Digital Humani Account with shopify") do %>
-    <%= form_with(model: @shop_settings, url: update_shop_settings_path(@shop_settings), method: "patch") do %>
+    <%= form_with(model: @shop_settings, url: update_shop_settings_path(@shop_settings), method: "patch",
+                  html: {class: 'shop-settings-form'}) do %>
+      <% if @shop_settings.errors.any? %>
+        <%= polaris_banner(title: "Some errors occurred:", status: :critical) do %>
+          <% @shop_settings.errors.full_messages.each do |message| %>
+            <p> <%= message %></p>
+          <% end %>
+        <% end %>
+        <%= polaris_spacer(vertical: :loose) %>
+      <% end %>
+
       <%= polaris_form_layout do |form_layout| %>
         <% form_layout.item do %>
-          <%= polaris_text_field(
-                name: :api_key,
-                label: "API key",
-                value: @shop_settings.api_key,
-                help_text: "The API key will be used for authenticating your API requests."
-              ) %>
+          <%= polaris_text_field(name: :api_key, label: "API key", value: @shop_settings.api_key,
+                                 help_text: "The API key will be used for authenticating your API requests.") %>
         <% end %>
         <% form_layout.item do %>
-          <%= polaris_text_field(
-                name: :enterprise_id,
-                label: "Enterprise ID",
-                value: @shop_settings.enterprise_id,
-                help_text: "You will need the enterprise's ID to interact with most of the API calls.",
-              ) %>
+          <%= polaris_text_field(name: :enterprise_id, label: "Enterprise ID", value: @shop_settings.enterprise_id,
+                                 help_text: "You will need the enterprise's ID to interact with most of the API calls.") %>
         <% end %>
         <% form_layout.item do %>
-          <%= polaris_text_field(
-                name: :project_id,
-                label: "Project ID",
-                value: @shop_settings.project_id,
-                disabled: true
-              ) %>
+          <%= polaris_text_field(name: :project_id, label: "Project ID", value: @shop_settings.project_id, disabled: true) %>
         <% end %>
+
         <% form_layout.item do %>
-          <%= polaris_button(primary: true, submit: true) { "Send" } %>
+          <%= polaris_button_group do |group| %>
+            <%= group.button(primary: true, submit: true) { "Send" } %>
+            <%= group.button(url: home_path) { "Cancel" } %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>

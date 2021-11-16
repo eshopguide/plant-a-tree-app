@@ -9,11 +9,9 @@ class ShopSettingsController < AuthenticatedController
 
   def update
     if @shop_settings.update(shop_settings_params)
-      flash[:notice] = 'Settings has been updated'
-      redirect_to home_path
+      turbo_redirect_to home_path, notice: 'Settings has been updated'
     else
-      flash.now[:alert] = 'Could not save settings.'
-      render :form
+      render :form, status: :unprocessable_entity
     end
   end
 

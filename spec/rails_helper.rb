@@ -28,6 +28,9 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+# Configure Capybara
+Capybara.default_driver = :selenium
+
 # Configure Shoulda Matchers
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
