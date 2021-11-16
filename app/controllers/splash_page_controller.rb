@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SplashPageController < ApplicationController
   include ShopifyApp::ShopHost
   include ShopifyApp::EmbeddedApp

@@ -31,10 +31,13 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '>= 4.1.0'
-  gem 'listen', '~> 3.5'
-  gem 'spring'
+  gem 'brakeman', require: false
   gem 'foreman', '~> 0.87.2'
+  gem 'listen', '~> 3.5'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-performance', require: false
+  gem 'spring'
+  gem 'web-console', '>= 4.1.0'
 end
 
 group :test do

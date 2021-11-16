@@ -4,6 +4,7 @@ class AddShopSettings < ActiveRecord::Migration[6.1]
       t.text :api_key_ciphertext
       t.string :enterprise_id
       t.string :project_id
+      t.timestamps
     end
 
     add_reference :shop_settings, :shop, foreign_key: true

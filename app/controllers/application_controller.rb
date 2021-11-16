@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   def turbo_redirect_to(options = {}, response_options = {})
     if Rails.configuration.force_iframe

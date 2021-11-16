@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_11_09_161213) do
     t.text "api_key_ciphertext"
     t.string "enterprise_id"
     t.string "project_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "shop_id"
     t.index ["shop_id"], name: "index_shop_settings_on_shop_id"
   end

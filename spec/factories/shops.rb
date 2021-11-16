@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :shop do
     shopify_domain { "#{SecureRandom.hex(8)}.myshopify.com" }

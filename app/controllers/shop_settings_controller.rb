@@ -22,7 +22,7 @@ class ShopSettingsController < AuthenticatedController
   end
 
   def find_shop_and_settings
-    @shop = Shop.find_by_shopify_domain(@current_shopify_session.domain)
+    @shop = Shop.find_by(shopify_domain: @current_shopify_session.domain)
     @shop_settings = @shop.shop_settings
   end
 end
