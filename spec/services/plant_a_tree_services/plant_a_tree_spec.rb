@@ -5,14 +5,13 @@ require 'rails_helper'
 describe PlantATreeServices::PlantATree do
   let!(:shop_settings) { create(:shop_settings) }
 
-  let(:user) { 'test@example.com' }
   let(:tree_amount) { 3 }
   let(:request_header) { { 'X-Api-Key' => shop_settings.api_key } }
   let(:request_body) do
     {
       'enterpriseId': shop_settings.enterprise_id,
       'projectId': shop_settings.project_id,
-      'user': user,
+      'user': shop_settings.shop.shopify_domain,
       'treeCount': tree_amount
     }
   end
@@ -23,7 +22,7 @@ describe PlantATreeServices::PlantATree do
       'treeCount' => tree_amount,
       'enterpriseId' => shop_settings.enterprise_id,
       'projectId' => shop_settings.project_id,
-      'user' => user
+      'user' => shop_settings.shop.shopify_domain
     }
   end
 
