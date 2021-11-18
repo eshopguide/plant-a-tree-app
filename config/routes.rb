@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get '/shop_settings(/:id)', as: 'edit_shop_settings', to: 'shop_settings#edit'
   patch '/shop_settings(/:id)', as: 'update_shop_settings', to: 'shop_settings#update'
 
-  post 'webhooks/orders_paid', to: 'webhooks#orders_paid'
+  post 'custom_webhooks/orders_paid', to: 'webhooks#orders_paid'
 end

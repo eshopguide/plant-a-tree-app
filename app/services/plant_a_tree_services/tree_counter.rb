@@ -28,7 +28,7 @@ module PlantATreeServices
     # Get all line items of an order that are a 'plant_a_tree_services' product
     # return array of hashes
     def tree_line_items
-      line_items = @order['order']['line_items']
+      line_items = @order['line_items']
       line_items.select { |item| tree_product_ids.include?(item['product_id']) }
     end
 
