@@ -13,7 +13,7 @@ describe 'Update shop settings', type: :feature do
     visit edit_shop_settings_path
   end
 
-  context 'with valid user intput' do
+  context 'with valid user input' do
     it 'updates api credentials successfully' do
       within('form.shop-settings-form') do
         fill_in 'api_key', with: new_api_key
