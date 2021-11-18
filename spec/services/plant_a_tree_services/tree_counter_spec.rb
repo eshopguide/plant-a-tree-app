@@ -7,13 +7,13 @@ describe PlantATreeServices::TreeCounter do
   let!(:shop) { create(:shop, shopify_domain: shop_domain) }
 
   let(:order_params) { JSON.parse(load_order('order_paid_with_trees')) }
-  let(:line_item_ids) { JSON.parse(load_products('line_items_with_trees')) }
+  let(:tree_product_gids) { %w[gid://shopify/Product/7003132068005 gid://shopify/Product/7211011539109] }
 
   let(:result) { PlantATreeServices::TreeCounter.call(shop, order_params) }
 
   before do
-    stub_request(:get, "https://#{shop_domain}/admin/api/2021-07/products.json?fields=id&tags=plant_a_tree")
-      .to_return(status: 200, body: line_item_ids.to_json, headers: {})
+    # TODO: find a stable way to stub shopify api graphql request
+    allow_any_instance_of(PlantATreeServices::TreeCounter).to receive(:tree_product_gids).and_return(tree_product_gids)
   end
 
   it 'returns success' do
@@ -23,7 +23,7 @@ describe PlantATreeServices::TreeCounter do
 
   context 'without tree product in order' do
     let(:order_params) { JSON.parse(load_order('order_paid_without_trees')) }
-    let(:line_item_ids) { JSON.parse(load_products('line_items_without_trees')) }
+    let(:tree_product_gids) { [] }
 
     it 'returns failure' do
       expect(result.success?).to be_falsey
