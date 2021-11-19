@@ -20,3 +20,5 @@ import "shopify_app"
 import "controllers"
 
 import "@shopify/polaris/dist/styles.css"
+
+require.context('../images', true);

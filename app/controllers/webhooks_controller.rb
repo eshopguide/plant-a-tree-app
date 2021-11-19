@@ -12,6 +12,6 @@ class WebhooksController < ApplicationController
   private
 
   def order_params
-    params.except(:controller, :action, :type)
+    params.permit!.except(:controller, :action, :type)
   end
 end

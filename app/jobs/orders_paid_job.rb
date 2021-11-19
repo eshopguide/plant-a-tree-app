@@ -12,9 +12,9 @@ class OrdersPaidJob
       return
     end
 
-    result = PlantATree::TreeCounter.call(shop, order)
+    result = PlantATreeServices::TreeCounter.call(shop, order)
 
     # TODO: Do we want some error handling here?
-    PlantATree::PlantATree.call(result.payload) if result.success?
+    PlantATreeServices::PlantATree.call(shop, result.payload) if result.success?
   end
 end

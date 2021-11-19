@@ -11,6 +11,7 @@ gem 'bootsnap', '>= 1.7.5', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails', '~> 2.7'
 gem 'sidekiq', '~> 6.2'
+gem 'lockbox', '~> 0.6.6'
 
 # shopify
 gem 'shopify_app', github: 'kirillplatonov/shopify_app'
@@ -30,16 +31,23 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '>= 4.1.0'
-  gem 'listen', '~> 3.5'
-  gem 'spring'
+  gem 'brakeman', require: false
   gem 'foreman', '~> 0.87.2'
+  gem 'listen', '~> 3.5'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-performance', require: false
+  gem 'spring'
+  gem 'web-console', '>= 4.1.0'
 end
 
 group :test do
   gem 'capybara', '>= 3.26'
+  gem 'database_cleaner'
   gem 'rspec-sidekiq'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'simplecov', require: false
   gem 'webdrivers'
   gem 'webmock', '~> 3.14'
 end

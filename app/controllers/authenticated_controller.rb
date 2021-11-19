@@ -20,7 +20,8 @@ class AuthenticatedController < ApplicationController
   end
 
   private
-    def set_shop_origin
-      @shop_origin = current_shopify_domain
-    end
+
+  def set_shop_origin
+    @shop_origin = current_shopify_domain
+  end
 end
