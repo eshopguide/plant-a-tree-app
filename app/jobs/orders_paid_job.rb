@@ -12,9 +12,8 @@ class OrdersPaidJob
       return
     end
 
+    # TODO: Add error handling, if shop settings not complete
     result = PlantATreeServices::TreeCounter.call(shop, order)
-
-    # TODO: Do we want some error handling here?
     PlantATreeServices::PlantATree.call(shop, result.payload) if result.success?
   end
 end
