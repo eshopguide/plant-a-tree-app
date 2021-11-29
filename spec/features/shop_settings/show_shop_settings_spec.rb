@@ -30,7 +30,7 @@ describe 'Show shop settings', type: :feature do
     end
 
     it 'renders a request to choose a project' do
-      expect(page).to have_content("Choose a reforestation project")
+      expect(page).to have_content('Choose a reforestation project')
       expect(page).to have_selector(:link_or_button, 'Choose Project')
     end
 
@@ -42,7 +42,7 @@ describe 'Show shop settings', type: :feature do
 
       it 'renders project name' do
         expect(page).to have_content(shop.shop_settings.project_name)
-        expect(page).to_not have_content("Choose a reforestation project")
+        expect(page).to_not have_content('Choose a reforestation project')
       end
     end
   end

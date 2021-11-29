@@ -37,10 +37,9 @@ class ShopSettingsController < AuthenticatedController
   def find_project_name
     # get project name if a project_id was submitted
     project_id = shop_settings_params.try(:fetch, 'project_id', nil)
+    return if project_id.blank?
 
-    if project_id.present?
-      projects = JSON.parse(Rails.cache.redis.get('projects'))
-      @project_name = projects.find{ |project| project['id'] == project_id }['name']
-    end
+    projects = JSON.parse(Rails.cache.redis.get('projects'))
+    @project_name = projects.find { |project| project['id'] == project_id }['name']
   end
 end

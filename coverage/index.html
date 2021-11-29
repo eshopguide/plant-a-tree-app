@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-11-29T12:40:55+01:00">2021-11-29T12:40:55+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-11-29T13:09:07+01:00">2021-11-29T13:09:07+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -95,7 +95,7 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#912bf2c1fab17c3c7ae8a4a4a759dbfd1a9f46f5" class="src_link" title="app/controllers/shop_settings_controller.rb">app/controllers/shop_settings_controller.rb</a></td>
             <td class="green strong cell--number t-file__coverage">91.30 %</td>
-            <td class="cell--number">46</td>
+            <td class="cell--number">45</td>
             <td class="cell--number">23</td>
             <td class="cell--number">21</td>
             <td class="cell--number">2</td>
@@ -308,7 +308,7 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#912bf2c1fab17c3c7ae8a4a4a759dbfd1a9f46f5" class="src_link" title="app/controllers/shop_settings_controller.rb">app/controllers/shop_settings_controller.rb</a></td>
             <td class="green strong cell--number t-file__coverage">91.30 %</td>
-            <td class="cell--number">46</td>
+            <td class="cell--number">45</td>
             <td class="cell--number">23</td>
             <td class="cell--number">21</td>
             <td class="cell--number">2</td>
@@ -1828,7 +1828,18 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="40">
+          <li class="covered" data-hits="2" data-linenumber="40">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    return if project_id.blank?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="41">
             
             
 
@@ -1839,24 +1850,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="41">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    if project_id.present?</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="missed" data-hits="0" data-linenumber="42">
             
             
 
             
 
-            <code class="ruby">      projects = JSON.parse(Rails.cache.redis.get(&#39;projects&#39;))</code>
+            <code class="ruby">    projects = JSON.parse(Rails.cache.redis.get(&#39;projects&#39;))</code>
           </li>
         </div>
       
@@ -1867,7 +1867,7 @@
 
             
 
-            <code class="ruby">      @project_name = projects.find{ |project| project[&#39;id&#39;] == project_id }[&#39;name&#39;]</code>
+            <code class="ruby">    @project_name = projects.find { |project| project[&#39;id&#39;] == project_id }[&#39;name&#39;]</code>
           </li>
         </div>
       
@@ -1878,23 +1878,12 @@
 
             
 
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="45">
-            
-            
-
-            
-
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="46">
+          <li class="never" data-hits="" data-linenumber="45">
             
             
 
@@ -2521,7 +2510,7 @@
 
             
 
-            <code class="ruby">    projects.map{|p| [p[&#39;name&#39;], p[&#39;id&#39;]]}</code>
+            <code class="ruby">    projects.map { |p| [p[&#39;name&#39;], p[&#39;id&#39;]] }</code>
           </li>
         </div>
       
@@ -4353,7 +4342,7 @@
 
             
 
-            <code class="ruby">      tree_product_gids.map{ |gid| gid.split(&quot;/&quot;).pop().to_i }</code>
+            <code class="ruby">      tree_product_gids.map { |gid| gid.split(&#39;/&#39;).pop.to_i }</code>
           </li>
         </div>
       

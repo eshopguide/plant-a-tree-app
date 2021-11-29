@@ -9,7 +9,7 @@ require 'spec_helper'
 
 require 'capybara/rspec'
 require 'rspec/rails'
-require "selenium/webdriver"
+require 'selenium/webdriver'
 require 'sidekiq/testing'
 require 'simplecov'
 require 'webmock/rspec'
@@ -47,16 +47,16 @@ SimpleCov.start('rails')
 WebMock.disable_net_connect!(allow_localhost: true)
 
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
   config.allow_http_connections_when_no_cassette = true
   config.configure_rspec_metadata!
 
   # Remove sensitiv data from cassettes
-  config.filter_sensitive_data('X_API_KEY') { |interaction|
+  config.filter_sensitive_data('X_API_KEY') do |interaction|
     interaction.request.headers.delete('X-Api-Key')
     interaction.request.headers.delete('X-Shopify-Access-Token')
-  }
+  end
 end
 
 RSpec.configure do |config|

@@ -1,8 +1,8 @@
 <%= polaris_page do %>
-  <% unless @shop_settings.api_key.present? %>
+  <% if @shop_settings.api_key.blank? %>
     <%= render 'empty_api_state' %>
   <% else %>
-    <% unless @shop_settings.project_id.present? %>
+    <% if @shop_settings.project_id.blank? %>
       <%= polaris_callout_card(
             title: "Choose a reforestation project",
             illustration: "https://cdn.shopify.com/s/assets/admin/checkout/settings-customizecart-705f57c725ac05be5a34ec20c05b94298cb8afd10aac7bd9c7ad02030f48cfa0.svg",

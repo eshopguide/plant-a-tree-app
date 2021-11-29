@@ -5,6 +5,6 @@ module ShopSettingsHelper
     # get digital humani project list from redis store
     projects = JSON.parse(Rails.cache.redis.get('projects'))
     # map list to meet select_tag options
-    projects.map{|p| [p['name'], p['id']]}
+    projects.map { |p| [p['name'], p['id']] }
   end
 end

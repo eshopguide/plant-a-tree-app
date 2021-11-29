@@ -7,11 +7,13 @@ describe PlantATreeServices::PlantATree do
   let(:tree_amount) { 3 }
 
   let(:response_body) do
-    VCR.use_cassette("digital_humani/plantatree") { PlantATreeServices::PlantATree.call(shop_settings.shop, tree_amount) }
+    VCR.use_cassette('digital_humani/plantatree') do
+      PlantATreeServices::PlantATree.call(shop_settings.shop, tree_amount)
+    end
   end
 
   it 'successfully plant some trees' do
-    expect(response_body).to have_key("uuid")
-    expect(response_body["treeCount"]).to eq(3)
+    expect(response_body).to have_key('uuid')
+    expect(response_body['treeCount']).to eq(3)
   end
 end

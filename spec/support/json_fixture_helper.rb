@@ -17,6 +17,6 @@ module JSONFixtureHelper
   end
 
   def load_projects_list
-    load_json_fixture("projects/all")
+    load_json_fixture('projects/all')
   end
 end

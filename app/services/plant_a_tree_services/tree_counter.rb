@@ -34,7 +34,7 @@ module PlantATreeServices
     end
 
     def parsed_tree_product_ids
-      tree_product_gids.map{ |gid| gid.split("/").pop().to_i }
+      tree_product_gids.map { |gid| gid.split('/').pop.to_i }
     end
 
     # Get the ids of all products in the shop tagged as 'plant_a_tree_services'

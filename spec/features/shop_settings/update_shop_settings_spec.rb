@@ -36,7 +36,7 @@ describe 'Update shop settings', type: :feature do
   context 'with api credentials set' do
     let(:new_project_name) { 'India TIST' }
     let(:project_list) { JSON.parse(load_projects_list.to_json) }
-    let(:mapped_project_list) { [["India TIST", "81818182"]] }
+    let(:mapped_project_list) { [['India TIST', '81818182']] }
 
     before do
       shop.shop_settings.update({ api_key: new_api_key, enterprise_id: new_enterprise_id })
