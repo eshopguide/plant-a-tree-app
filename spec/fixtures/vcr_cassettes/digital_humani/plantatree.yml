@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sandbox.digitalhumani.com/tree
+    body:
+      encoding: UTF-8
+      string: '{"enterpriseId":"dbaf5025","projectId":"81818181","user":"35ef179f415116a1.myshopify.com","treeCount":3}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Digital Humani Ruby SDK
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '187'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 24 Nov 2021 10:20:18 GMT
+      X-Amzn-Requestid:
+      - 971e972a-ffd1-4152-96e6-f04a119b49c0
+      Referrer-Policy:
+      - no-referrer
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Xss-Protection:
+      - '0'
+      Access-Control-Allow-Origin:
+      - "*"
+      Expect-Ct:
+      - max-age=0
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Amzn-Remapped-Content-Length:
+      - '187'
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';block-all-mixed-content;font-src ''self''
+        https: data:;frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      X-Download-Options:
+      - noopen
+      X-Amz-Apigw-Id:
+      - JTe7bFGc4osFa0g=
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - W/"bb-8NX5V9biNjthLwzogCNAGcnaIk0"
+      X-Amzn-Trace-Id:
+      - Root=1-619e11e2-07d76118252d54296f8b1083;Sampled=0
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 9c7c26f5beeb09381cea450ea3581b37.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - FRA50-C1
+      X-Amz-Cf-Id:
+      - AMLffEedVFapWhnXBOwVG6hnH0LQmky2TAY0kAxP0CFR17--jn3DXQ==
+    body:
+      encoding: UTF-8
+      string: '{"uuid":"e49dd5b1-de91-497a-8813-1ac2672e6530","created":"2021-11-24T10:20:18.567Z","treeCount":3,"enterpriseId":"dbaf5025","projectId":"81818181","user":"35ef179f415116a1.myshopify.com"}'
+  recorded_at: Wed, 24 Nov 2021 10:20:18 GMT
+recorded_with: VCR 6.0.0

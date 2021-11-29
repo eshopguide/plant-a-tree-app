@@ -340,6 +340,7 @@ GEM
     tzinfo-data (1.2021.5)
       tzinfo (>= 1.0.0)
     unicode-display_width (2.1.0)
+    vcr (6.0.0)
     view_component (2.42.0)
       activesupport (>= 5.0.0, < 8.0)
       method_source (~> 1.0)
@@ -404,6 +405,7 @@ DEPENDENCIES
   spring
   turbo-rails (~> 0.6.0)
   tzinfo-data
+  vcr
   web-console (>= 4.1.0)
   webdrivers
   webmock (~> 3.14)

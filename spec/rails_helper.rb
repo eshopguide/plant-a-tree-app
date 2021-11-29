@@ -9,6 +9,7 @@ require 'spec_helper'
 
 require 'capybara/rspec'
 require 'rspec/rails'
+require "selenium/webdriver"
 require 'sidekiq/testing'
 require 'simplecov'
 require 'webmock/rspec'
@@ -29,7 +30,9 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 # Configure Capybara
-Capybara.default_driver = :selenium
+Selenium::WebDriver::Chrome.driver_path = '/usr/bin/chromedriver'
+Capybara.default_driver = :rack_test
+Capybara.javascript_driver = :selenium_chrome_headless
 
 # Configure Shoulda Matchers
 Shoulda::Matchers.configure do |config|
@@ -41,7 +44,20 @@ end
 
 Sidekiq::Testing.fake!
 SimpleCov.start('rails')
-WebMock.disable_net_connect!(net_http_connect_on_start: true, allow_localhost: true)
+WebMock.disable_net_connect!(allow_localhost: true)
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.hook_into :webmock
+  config.allow_http_connections_when_no_cassette = true
+  config.configure_rspec_metadata!
+
+  # Remove sensitiv data from cassettes
+  config.filter_sensitive_data('X_API_KEY') { |interaction|
+    interaction.request.headers.delete('X-Api-Key')
+    interaction.request.headers.delete('X-Shopify-Access-Token')
+  }
+end
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

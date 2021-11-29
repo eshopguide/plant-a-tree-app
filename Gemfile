@@ -50,4 +50,5 @@ group :test do
   gem 'simplecov', require: false
   gem 'webdrivers'
   gem 'webmock', '~> 3.14'
+  gem 'vcr'
 end
