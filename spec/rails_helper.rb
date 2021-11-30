@@ -30,7 +30,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 # Configure Capybara
-Selenium::WebDriver::Chrome.driver_path = '/usr/bin/chromedriver'
+Selenium::WebDriver::Chrome.driver_path = ENV.fetch('SELENIUM_CHROMEDRIVER_PATH')
 Capybara.default_driver = :rack_test
 Capybara.javascript_driver = :selenium_chrome_headless
 
