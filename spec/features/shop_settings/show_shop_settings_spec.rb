@@ -36,7 +36,7 @@ describe 'Show shop settings', type: :feature do
 
     context 'with project set' do
       before do
-        shop.shop_settings.update({ project_id: SecureRandom.hex(4), project_name: SecureRandom.uuid })
+        shop.shop_settings.update_columns({ project_id: SecureRandom.hex(4), project_name: SecureRandom.uuid })
         visit current_path
       end
 

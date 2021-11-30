@@ -10,6 +10,7 @@ describe 'Update shop settings', type: :feature do
   before do
     clear_login
     login(shop)
+    allow(Rails).to receive_message_chain(:cache, :redis, :keys, :include?).and_return(true)
     visit edit_shop_settings_path
   end
 
@@ -35,14 +36,13 @@ describe 'Update shop settings', type: :feature do
 
   context 'with api credentials set' do
     let(:new_project_name) { 'India TIST' }
-    let(:project_list) { JSON.parse(load_projects_list.to_json) }
+    let(:cache_projects) { JSON.parse(load_projects_list.to_json) }
     let(:mapped_project_list) { [['India TIST', '81818182']] }
 
     before do
-      shop.shop_settings.update({ api_key: new_api_key, enterprise_id: new_enterprise_id })
-      allow_any_instance_of(PlantATreeServices::GetProjectList).to receive(:call).and_return(project_list)
+      shop.shop_settings.update_columns({ api_key: new_api_key, enterprise_id: new_enterprise_id })
+      allow(Rails).to receive_message_chain(:cache, :redis, :hget)
       allow_any_instance_of(ShopSettingsHelper).to receive(:map_projects_for_selection).and_return(mapped_project_list)
-      allow_any_instance_of(ShopSettingsController).to receive(:find_project_name).and_return(:new_project_name)
 
       visit current_path
     end

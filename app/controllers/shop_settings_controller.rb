@@ -3,7 +3,6 @@
 class ShopSettingsController < AuthenticatedController
   before_action :find_shop_and_settings, only: %i[show edit update]
   before_action :find_projects, only: :edit
-  before_action :find_project_name, only: :update
 
   def edit
     render :form
@@ -20,8 +19,7 @@ class ShopSettingsController < AuthenticatedController
   private
 
   def shop_settings_params
-    # merge project name into params if a project_id was submitted
-    params.permit(:api_key, :enterprise_id, :project_id)&.merge(project_name: @project_name)
+    params.permit(:api_key, :enterprise_id, :project_id)
   end
 
   def find_shop_and_settings
@@ -30,16 +28,8 @@ class ShopSettingsController < AuthenticatedController
   end
 
   def find_projects
-    # Only call digital humani api when api credentials exists
-    @projects = PlantATreeServices::GetProjectList.call(@shop) if @shop_settings.api_key.present?
-  end
+    return if Rails.cache.redis.keys.include?('projects')
 
-  def find_project_name
-    # get project name if a project_id was submitted
-    project_id = shop_settings_params.try(:fetch, 'project_id', nil)
-    return if project_id.blank?
-
-    projects = JSON.parse(Rails.cache.redis.get('projects'))
-    @project_name = projects.find { |project| project['id'] == project_id }['name']
+    PlantATreeServices::CacheProjectList.call(@shop)
   end
 end
