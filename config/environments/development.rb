@@ -28,7 +28,7 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = true
 
-    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'], expires_in: 20.minutes }
   end
 
   # Print deprecation notices to the Rails logger.
