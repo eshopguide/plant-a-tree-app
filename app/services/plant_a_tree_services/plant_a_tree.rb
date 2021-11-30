@@ -8,7 +8,8 @@ module PlantATreeServices
     end
 
     def call
-      digital_humani_api(@shop).plant_tree(project_id: '81818181', user: @shop.shopify_domain, treeCount: @tree_amount)
+      digital_humani_api(@shop)
+        .plant_tree(project_id: @shop.shop_settings.project_id, user: @shop.shopify_domain, treeCount: @tree_amount)
     end
   end
 end
