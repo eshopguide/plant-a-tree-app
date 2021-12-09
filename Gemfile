@@ -12,6 +12,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails', '~> 2.7'
 gem 'sidekiq', '~> 6.2'
 gem 'lockbox', '~> 0.6.6'
+gem 'redis'
 
 # shopify
 gem 'shopify_app', github: 'kirillplatonov/shopify_app'
@@ -50,4 +51,5 @@ group :test do
   gem 'simplecov', require: false
   gem 'webdrivers'
   gem 'webmock', '~> 3.14'
+  gem 'vcr'
 end

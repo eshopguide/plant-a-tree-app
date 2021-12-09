@@ -15,4 +15,8 @@ module JSONFixtureHelper
   def load_products(products_name)
     load_json_fixture("products/#{products_name}")
   end
+
+  def load_projects_list
+    load_json_fixture('projects/all')
+  end
 end

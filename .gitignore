@@ -37,6 +37,8 @@ yarn-debug.log*
 
 # Ignore file with Shopify API keys
 .env
+.env.development
+.env.test
 /.idea/*
 /.idea/
 

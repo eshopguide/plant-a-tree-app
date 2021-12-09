@@ -1,21 +1,11 @@
-<%= polaris_page(title: "Digital Humani API Settings") do %>
-  <%= polaris_card(title: "Setup a Digital Humani Account") do |card| %>
-    <% card.section do %>
-      <%= polaris_stack(spacing: :loose, vertical: true) do |stack| %>
-        <% stack.item do %>
-          <p>Some information how to set up an account and where to find the credentials there.</p>
-        <% end %>
-
-        <% stack.item do %>
-          <%= polaris_stack(distribution: :trailing) do %>
-            <% polaris_button(url: 'https://digitalhumani.com/') { 'Learn more' } %>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-
+<%= polaris_page do %>
   <%= polaris_card(title: "Connect your Digital Humani Account with shopify") do %>
+    <p>
+      Some information how to set up an account and where to find the credentials
+      <a target="_blank" href="https://my.digitalhumani.com/">here</a>.
+    </p>
+    <%= polaris_spacer(vertical: :loose) %>
+
     <%= form_with(model: @shop_settings, url: update_shop_settings_path(@shop_settings), method: "patch",
                   html: {class: 'shop-settings-form'}) do %>
       <% if @shop_settings.errors.any? %>
@@ -36,8 +26,13 @@
           <%= polaris_text_field(name: :enterprise_id, label: "Enterprise ID", value: @shop_settings.enterprise_id,
                                  help_text: "You will need the enterprise's ID to interact with most of the API calls.") %>
         <% end %>
-        <% form_layout.item do %>
-          <%= polaris_text_field(name: :project_id, label: "Project ID", value: @shop_settings.project_id, disabled: true) %>
+
+        <% if @shop_settings.api_key.present? %>
+          <% form_layout.item do %>
+            <%= polaris_select(name: :project_id, options: map_projects_for_selection,
+                               selected: @shop_settings.project_id, help_text: "A help text here",
+                               html: {class: 'project-select'}) %>
+          <% end %>
         <% end %>
 
         <% form_layout.item do %>

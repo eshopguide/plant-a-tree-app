@@ -1,13 +1,16 @@
 <%= polaris_page do %>
-  <% unless @shop_settings.api_key.present? %>
-    <%= polaris_empty_state(
-          heading: 'Connect your shop to the Digital Humani API',
-          image: asset_pack_url('media/images/logo_digital_humani.png')
-          ) do |state| %>
-      <% state.primary_action(url: edit_shop_settings_path) { 'Add API credentials' } %>
-      <% state.secondary_action(url: 'https://digitalhumani.com/') { 'Learn more' } %>
-    <% end %>
+  <% if @shop_settings.api_key.blank? %>
+    <%= render 'empty_api_state' %>
   <% else %>
+    <% if @shop_settings.project_id.blank? %>
+      <%= polaris_callout_card(
+            title: "Choose a reforestation project",
+            illustration: "https://cdn.shopify.com/s/assets/admin/checkout/settings-customizecart-705f57c725ac05be5a34ec20c05b94298cb8afd10aac7bd9c7ad02030f48cfa0.svg",
+            ) do |callout| %>
+        <% callout.primary_action(url: edit_shop_settings_path) { "Choose Project" } %>
+        <% callout.secondary_action(url: "https://digitalhumani.com/#partners", external: true) { "Learn more about partner projects " } %>
+      <% end %>
+    <% end %>
     <%= polaris_callout_card(
           title: "Digital Humani API Settings",
           illustration: asset_pack_url('media/images/logo_digital_humani.png')
@@ -20,8 +23,10 @@
         <% list.item(term: "Enterprise ID") do %>
           <%= @shop_settings.enterprise_id.present? ? @shop_settings.enterprise_id : 'not set yet' %>
         <% end %>
-        <% list.item(term: "Project ID") do %>
-          <%= @shop_settings.project_id.present? ? @shop_settings.project_id : 'not set yet' %>
+        <% if @shop_settings.project_id %>
+          <% list.item(term: "Project") do %>
+            <%= @shop_settings.project_name %>
+          <% end %>
         <% end %>
       <% end %>
 

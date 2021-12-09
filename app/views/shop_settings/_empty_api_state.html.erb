@@ -1,0 +1,7 @@
+<%= polaris_empty_state(
+      heading: 'Connect your shop to the Digital Humani API',
+      image: asset_pack_url('media/images/logo_digital_humani.png')
+    ) do |state| %>
+  <% state.primary_action(url: edit_shop_settings_path) { 'Add API credentials' } %>
+  <% state.secondary_action(url: 'https://digitalhumani.com/') { 'Learn more' } %>
+<% end %>
